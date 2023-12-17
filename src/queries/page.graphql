@@ -1,0 +1,26 @@
+query GetPage(
+    $pageSlug: ID!
+    $asPreview: Boolean = false
+    $idType: PageIdType = URI
+) {
+    page(id: $pageSlug, idType: $idType, asPreview: $asPreview) {
+        ...pageFieldsFragment
+    }
+}
+
+query GetPageSlugs {
+    pages(first: 1000, where: { status: PUBLISH }) {
+        nodes {
+            slug
+            seo {
+                metaRobotsNoindex
+            }
+        }
+    }
+}
+
+query GetPageById($pageId: ID!, $idType: PageIdType = DATABASE_ID) {
+    page(id: $pageId, idType: $idType) {
+        ...pageFieldsFragment
+    }
+}

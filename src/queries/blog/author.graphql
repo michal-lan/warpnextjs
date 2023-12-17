@@ -1,0 +1,34 @@
+query GetAuthor($pageSlug: ID!, $idType: UserNodeIdTypeEnum = SLUG) {
+    user(id: $pageSlug, idType: $idType) {
+        id
+        name
+        slug
+        seo {
+            metaRobotsNoindex
+            metaRobotsNofollow
+            breadcrumbTitle
+            metaDesc
+            canonical
+            opengraphDescription
+            opengraphImage {
+                link
+            }
+            opengraphTitle
+            title
+            schema {
+                raw
+            }
+        }
+    }
+}
+
+query GetBlogAuthorSlugs {
+    users(first: 1000) {
+        nodes {
+            slug
+            seo {
+                metaRobotsNoindex
+            }
+        }
+    }
+}

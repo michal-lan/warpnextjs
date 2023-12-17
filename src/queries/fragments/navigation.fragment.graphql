@@ -1,0 +1,12 @@
+fragment NavigationMenuItemFragment on MenuItem {
+    id
+    path
+    label
+    parentId
+    cssClasses
+    menu {
+        node {
+            name
+        }
+    }
+}

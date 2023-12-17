@@ -1,0 +1,19 @@
+query GetBlogPosts($offset: Int = 0, $size: Int = 10) {
+    posts(
+        where: {
+            offsetPagination: { offset: $offset, size: $size }
+            status: PUBLISH
+        }
+    ) {
+        pageInfo {
+            offsetPagination {
+                total
+                hasMore
+                hasPrevious
+            }
+        }
+        nodes {
+            ...postFieldsFragment
+        }
+    }
+}

@@ -1,0 +1,24 @@
+fragment seoFragment on Page {
+    seo {
+        metaRobotsNoindex
+        metaRobotsNofollow
+        breadcrumbs {
+            text
+            url
+        }
+        metaDesc
+        metaKeywords
+        canonical
+        opengraphDescription
+        opengraphAuthor
+        opengraphImage {
+            link
+        }
+        opengraphTitle
+        opengraphUrl
+        title
+        schema {
+            raw
+        }
+    }
+}

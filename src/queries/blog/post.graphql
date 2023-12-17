@@ -1,0 +1,9 @@
+query GetPost(
+    $pageSlug: ID!
+    $asPreview: Boolean = false
+    $idType: PostIdType = SLUG
+) {
+    post(id: $pageSlug, idType: $idType, asPreview: $asPreview) {
+        ...postFieldsFragment
+    }
+}

@@ -1,0 +1,40 @@
+query GetTag($pageSlug: ID!, $idType: TagIdType = SLUG) {
+    tag(id: $pageSlug, idType: $idType) {
+        id
+        name
+        slug
+        seo {
+            metaRobotsNoindex
+            metaRobotsNofollow
+            breadcrumbs {
+                text
+                url
+            }
+            metaDesc
+            metaKeywords
+            canonical
+            opengraphDescription
+            opengraphAuthor
+            opengraphImage {
+                link
+            }
+            opengraphTitle
+            opengraphUrl
+            title
+            schema {
+                raw
+            }
+        }
+    }
+}
+
+query GetBlogTagSlugs {
+    tags(first: 1000) {
+        nodes {
+            slug
+            seo {
+                metaRobotsNoindex
+            }
+        }
+    }
+}

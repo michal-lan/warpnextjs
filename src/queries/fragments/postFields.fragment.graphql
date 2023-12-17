@@ -1,0 +1,35 @@
+fragment postFieldsFragment on Post {
+    authorId
+    id
+    blocks
+    title
+    slug
+    template {
+        templateName
+    }
+    status
+    content
+    excerpt
+    seo {
+        metaRobotsNoindex
+        metaRobotsNofollow
+        breadcrumbs {
+            text
+            url
+        }
+        metaDesc
+        metaKeywords
+        canonical
+        opengraphDescription
+        opengraphAuthor
+        opengraphImage {
+            link
+        }
+        opengraphTitle
+        opengraphUrl
+        title
+        schema {
+            raw
+        }
+    }
+}

@@ -1,0 +1,22 @@
+query GetGlobalSettings(
+    $headerLocation: MenuLocationEnum
+    $footerLocation: MenuLocationEnum
+) {
+    headerMenuItems: menuItems(
+        first: 100
+        where: { location: $headerLocation }
+    ) {
+        nodes {
+            ...NavigationMenuItemFragment
+        }
+    }
+    footerMenuItems: menuItems(
+        first: 100
+        where: { location: $footerLocation }
+    ) {
+        nodes {
+            ...NavigationMenuItemFragment
+        }
+    }
+    globalStylesheet
+}

@@ -1,0 +1,23 @@
+fragment pageFieldsFragment on Page {
+    authorId
+    id
+    ...seoFragment
+    title
+    slug
+    template {
+        templateName
+    }
+    status
+    content
+    #pageBuilder {
+    #    pageBuilder {
+    #        ... on ContentNode_Pagebuilder_PageBuilder_SectionHero {
+    #            fieldGroupName
+    #            heading
+    #            description
+    #            ishidden
+    #        }
+    #    }
+    #}
+    blocks
+}

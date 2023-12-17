@@ -1,0 +1,42 @@
+query GetAllSlugs {
+    pages(first: 1000, where: { status: PUBLISH }) {
+        nodes {
+            slug
+            seo {
+                metaRobotsNoindex
+            }
+        }
+    }
+    posts(first: 1000, where: { status: PUBLISH }) {
+        nodes {
+            slug
+            seo {
+                metaRobotsNoindex
+            }
+        }
+    }
+    users(first: 1000) {
+        nodes {
+            slug
+            seo {
+                metaRobotsNoindex
+            }
+        }
+    }
+    categories(first: 1000) {
+        nodes {
+            slug
+            seo {
+                metaRobotsNoindex
+            }
+        }
+    }
+    tags(first: 1000) {
+        nodes {
+            slug
+            seo {
+                metaRobotsNoindex
+            }
+        }
+    }
+}
