@@ -60,7 +60,7 @@ directory_
 -   If you need to override paths for Sitemap.xml, just add it inside
     `constants/slugOverride.ts`
 
-### WordPress Quick start
+## WordPress Quick start
 
 1. Install and Activate required plugins that are listed below
 2. Create Page `HomePage` and `Blog`
@@ -75,7 +75,7 @@ directory_
    `wp-content/plugins/warpnextjs-wp-plugin/warpnextjs-wp-plugin.php` - that
    should be url of front-end app
 
-### PageBuilder Instructions
+## PageBuilder Instructions
 
 If you are owner of ACF PRO, go to ACF->Field Groups and create Group named
 `Page builder`, inside add field named: `Page builder` and set Field Type to
