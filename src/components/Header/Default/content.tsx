@@ -34,7 +34,7 @@ const HeaderDefaultContent = ({ headerMenuItems }: any) => {
                     </button>
                 </div>
                 <div className='hidden lg:flex lg:gap-x-12'>
-                    {headerMenu.map((item: MenuItemDataProps) => (
+                    {headerMenu?.map((item: MenuItemDataProps) => (
                         <a
                             key={item.label}
                             href={item.path}
@@ -72,7 +72,7 @@ const HeaderDefaultContent = ({ headerMenuItems }: any) => {
                     <div className='mt-6 flow-root'>
                         <div className='-my-6 divide-y divide-gray-500/25'>
                             <div className='space-y-2 py-6'>
-                                {headerMenu.map((item: MenuItemDataProps) => (
+                                {headerMenu?.map((item: MenuItemDataProps) => (
                                     <a
                                         key={item.label}
                                         href={item.path}

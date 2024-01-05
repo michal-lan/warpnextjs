@@ -2,10 +2,10 @@
 
 WarpNext.js is a framework that allows developers building front-end
 applications with headless WordPress on the back-end. It's provides support for
-Gutenberg Content/ACF Blocks, Custom Page builder in ACF (Flexible Content) and
-more (JWT auth, app structure, custom post types, categories/tags, pagination,
-menus, sitemap, metadata) and it's built to serve SSG/Static type of application
-for Ultra speed and great SEO Optimization.
+Gutenberg Content/ACF Blocks, Preview, Custom Page builder in ACF (Flexible
+Content) and more (JWT auth, app structure, custom post types, categories/tags,
+pagination, menus, sitemap, metadata) and it's built to serve SSG/Static type of
+application for Ultra speed and great SEO Optimization.
 
 ## Requirements
 
@@ -43,8 +43,7 @@ directory_
 2. Change .env.example to .env (or adjust to development/production
    environments)
 3. Change parameters inside .env
-
-4. If you are owner of ACF PRO, uncomment pageBuilder in:
+4. (Optional) If you are owner of ACF PRO, uncomment pageBuilder in:
    `pageFields.fragment.graphql` and `app/page.tsx`
 5. Run `npm install` to install dependencies
 6. Run `npm run compile` to generate graphql queries
@@ -59,6 +58,8 @@ directory_
     SSG/Static Application.
 -   If you need to override paths for Sitemap.xml, just add it inside
     `constants/slugOverride.ts`
+-   Make sure that you checked all `constants/*.ts` files, where you can manage
+    many settings
 
 ## WordPress Quick start
 
@@ -71,11 +72,12 @@ directory_
 6. Go to GraphlQL->Settings and turn on `Enable Public Introspection`
 7. Go to Appearance->Menus and create eg. `Main menu` and in Menu Settings
    select `Display location` to `Primary`
-8. Change the defined url `NEXTJS_APP_URL` in
-   `wp-content/plugins/warpnextjs-wp-plugin/warpnextjs-wp-plugin.php` - that
-   should be url of front-end app
+8. Go to Settings->WarpNext.js and set url for the front-end app, generate also
+   secret key and put it in the .env file
 
-## PageBuilder Instructions
+_TIP: You can also change menu locations in Settings->WarpNext.js_
+
+## (Optional) PageBuilder Instructions
 
 If you are owner of ACF PRO, go to ACF->Field Groups and create Group named
 `Page builder`, inside add field named: `Page builder` and set Field Type to
@@ -101,4 +103,4 @@ section, set: // "Prefix Field Labels" on true and Display to "Sameless"_
 
 ## TODO
 
--   preview page
+-   any ideas?

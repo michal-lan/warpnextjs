@@ -2,18 +2,16 @@ import makeApolloRequest from 'apollo-client'
 import { cache } from 'react'
 import { Metadata } from 'next'
 import {
-    GetPageQuery,
-    GetPageDocument,
     GetPageSlugsQuery,
     GetPageSlugsDocument,
+    GetContentNodeQuery,
+    GetContentNodeDocument,
 } from '@/__generated__/graphql'
-import Wrapper from '@/components/Wrapper'
-import Container from '@/components/Container'
-import SeoSchema from '@/components/SeoSchema'
 import { notFound } from 'next/navigation'
 import { PageProps } from '@/types/page'
 import { prepareSEO } from '@/utils/prepareSEO'
 import { getArchiveSlugs } from '@/utils/getArchiveSlugs'
+import Template from '@/components/Template'
 
 // Return a list of `params` to populate the [slug] dynamic segment
 export async function generateStaticParams() {
@@ -25,9 +23,12 @@ export async function generateStaticParams() {
 }
 
 const pageRequest = cache(async ({ params, searchParams }: PageProps) => {
-    return await makeApolloRequest<GetPageQuery>(GetPageDocument, {
-        pageSlug: params.slug,
-    })
+    return await makeApolloRequest<GetContentNodeQuery>(
+        GetContentNodeDocument,
+        {
+            pageSlug: params.slug,
+        },
+    )
 })
 
 export async function generateMetadata({
@@ -35,7 +36,7 @@ export async function generateMetadata({
     searchParams,
 }: PageProps): Promise<Metadata> {
     const { data } = await pageRequest({ params, searchParams })
-    return prepareSEO(data?.page?.seo)
+    return prepareSEO(data?.contentNode?.seo)
 }
 
 // Multiple versions of this page will be statically generated
@@ -43,21 +44,9 @@ export async function generateMetadata({
 export default async function Page({ params, searchParams }: PageProps) {
     const { data } = await pageRequest({ params, searchParams })
 
-    if (!data?.page) {
+    if (!data?.contentNode) {
         notFound()
     }
 
-    return (
-        <>
-            <Wrapper>
-                <Container>
-                    <div className='py-2 mb-4 w-full border-b border-gray-200 bg-white text-gray-400'>
-                        {data?.page?.title} - page single content
-                    </div>
-                    <p>Please add here some of design</p>
-                </Container>
-            </Wrapper>
-            <SeoSchema seo={data?.page?.seo} />
-        </>
-    )
+    return <Template data={data} type='page' />
 }
