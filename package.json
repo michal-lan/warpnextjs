@@ -1,6 +1,6 @@
 {
     "name": "warpnextjs",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "private": true,
     "scripts": {
         "dev": "next dev",
@@ -25,6 +25,7 @@
         "@wordpress/block-library": "^8.24.0",
         "apollo-link-token-refresh": "^0.6.1",
         "axios": "^1.6.1",
+        "dotenv": "^16.3.1",
         "graphql": "^16.8.1",
         "graphql-request": "^6.1.0",
         "isomorphic-fetch": "^3.0.0",

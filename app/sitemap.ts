@@ -11,7 +11,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
     const allSlugs = getAllSlugs(data, true)
 
-    const routes = allSlugs.map((route: { slug: string[] }) => ({
+    const routes = allSlugs?.map((route: { slug: string[] }) => ({
         url: `${process.env.NEXT_PUBLIC_WORDPRESS_URL}/${route.slug.join('/')}`,
         lastModified: new Date(),
     }))

@@ -10315,15 +10315,6 @@ export type GetBlogCategorySlugsQueryVariables = Exact<{ [key: string]: never; }
 
 export type GetBlogCategorySlugsQuery = { __typename?: 'RootQuery', categories?: { __typename?: 'RootQueryToCategoryConnection', nodes: Array<{ __typename?: 'Category', slug?: string | null, seo?: { __typename?: 'TaxonomySEO', metaRobotsNoindex?: string | null } | null }> } | null };
 
-export type GetPostQueryVariables = Exact<{
-  pageSlug: Scalars['ID']['input'];
-  asPreview?: InputMaybe<Scalars['Boolean']['input']>;
-  idType?: InputMaybe<PostIdType>;
-}>;
-
-
-export type GetPostQuery = { __typename?: 'RootQuery', post?: { __typename?: 'Post', authorId?: string | null, id: string, blocks?: any | null, title?: string | null, slug?: string | null, status?: string | null, content?: string | null, excerpt?: string | null, template?: { __typename?: 'DefaultTemplate', templateName?: string | null } | { __typename?: 'Template_Blank', templateName?: string | null } | { __typename?: 'Template_BlogAlternative', templateName?: string | null } | null, seo?: { __typename?: 'PostTypeSEO', metaRobotsNoindex?: string | null, metaRobotsNofollow?: string | null, metaDesc?: string | null, metaKeywords?: string | null, canonical?: string | null, opengraphDescription?: string | null, opengraphAuthor?: string | null, opengraphTitle?: string | null, opengraphUrl?: string | null, title?: string | null, breadcrumbs?: Array<{ __typename?: 'SEOPostTypeBreadcrumbs', text?: string | null, url?: string | null } | null> | null, opengraphImage?: { __typename?: 'MediaItem', link?: string | null } | null, schema?: { __typename?: 'SEOPostTypeSchema', raw?: string | null } | null } | null } | null };
-
 export type GetTagQueryVariables = Exact<{
   pageSlug: Scalars['ID']['input'];
   idType?: InputMaybe<TagIdType>;
@@ -10336,6 +10327,16 @@ export type GetBlogTagSlugsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type GetBlogTagSlugsQuery = { __typename?: 'RootQuery', tags?: { __typename?: 'RootQueryToTagConnection', nodes: Array<{ __typename?: 'Tag', slug?: string | null, seo?: { __typename?: 'TaxonomySEO', metaRobotsNoindex?: string | null } | null }> } | null };
+
+export type GetContentNodeQueryVariables = Exact<{
+  pageSlug: Scalars['ID']['input'];
+  asPreview?: InputMaybe<Scalars['Boolean']['input']>;
+  idType?: InputMaybe<ContentNodeIdTypeEnum>;
+  contentType?: InputMaybe<ContentTypeEnum>;
+}>;
+
+
+export type GetContentNodeQuery = { __typename?: 'RootQuery', contentNode?: { __typename?: 'MediaItem' } | { __typename?: 'Page', authorId?: string | null, id: string, title?: string | null, slug?: string | null, status?: string | null, content?: string | null, blocks?: any | null, template?: { __typename?: 'DefaultTemplate', templateName?: string | null } | { __typename?: 'Template_Blank', templateName?: string | null } | { __typename?: 'Template_BlogAlternative', templateName?: string | null } | null, seo?: { __typename?: 'PostTypeSEO', metaRobotsNoindex?: string | null, metaRobotsNofollow?: string | null, metaDesc?: string | null, metaKeywords?: string | null, canonical?: string | null, opengraphDescription?: string | null, opengraphAuthor?: string | null, opengraphTitle?: string | null, opengraphUrl?: string | null, title?: string | null, breadcrumbs?: Array<{ __typename?: 'SEOPostTypeBreadcrumbs', text?: string | null, url?: string | null } | null> | null, opengraphImage?: { __typename?: 'MediaItem', link?: string | null } | null, schema?: { __typename?: 'SEOPostTypeSchema', raw?: string | null } | null } | null } | { __typename?: 'Post', authorId?: string | null, id: string, blocks?: any | null, title?: string | null, slug?: string | null, status?: string | null, content?: string | null, excerpt?: string | null, template?: { __typename?: 'DefaultTemplate', templateName?: string | null } | { __typename?: 'Template_Blank', templateName?: string | null } | { __typename?: 'Template_BlogAlternative', templateName?: string | null } | null, seo?: { __typename?: 'PostTypeSEO', metaRobotsNoindex?: string | null, metaRobotsNofollow?: string | null, metaDesc?: string | null, metaKeywords?: string | null, canonical?: string | null, opengraphDescription?: string | null, opengraphAuthor?: string | null, opengraphTitle?: string | null, opengraphUrl?: string | null, title?: string | null, breadcrumbs?: Array<{ __typename?: 'SEOPostTypeBreadcrumbs', text?: string | null, url?: string | null } | null> | null, opengraphImage?: { __typename?: 'MediaItem', link?: string | null } | null, schema?: { __typename?: 'SEOPostTypeSchema', raw?: string | null } | null } | null } | null };
 
 export type NavigationMenuItemFragmentFragment = { __typename?: 'MenuItem', id: string, path?: string | null, label?: string | null, parentId?: string | null, cssClasses?: Array<string | null> | null, menu?: { __typename?: 'MenuItemToMenuConnectionEdge', node: { __typename?: 'Menu', name?: string | null } } | null };
 
@@ -10363,27 +10364,10 @@ export type ReadingSettingsQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type ReadingSettingsQuery = { __typename?: 'RootQuery', readingSettings?: { __typename?: 'ReadingSettings', pageForPosts?: number | null, pageOnFront?: number | null, showOnFront?: string | null, postsPerPage?: number | null } | null };
 
-export type GetPageQueryVariables = Exact<{
-  pageSlug: Scalars['ID']['input'];
-  asPreview?: InputMaybe<Scalars['Boolean']['input']>;
-  idType?: InputMaybe<PageIdType>;
-}>;
-
-
-export type GetPageQuery = { __typename?: 'RootQuery', page?: { __typename?: 'Page', authorId?: string | null, id: string, title?: string | null, slug?: string | null, status?: string | null, content?: string | null, blocks?: any | null, template?: { __typename?: 'DefaultTemplate', templateName?: string | null } | { __typename?: 'Template_Blank', templateName?: string | null } | { __typename?: 'Template_BlogAlternative', templateName?: string | null } | null, seo?: { __typename?: 'PostTypeSEO', metaRobotsNoindex?: string | null, metaRobotsNofollow?: string | null, metaDesc?: string | null, metaKeywords?: string | null, canonical?: string | null, opengraphDescription?: string | null, opengraphAuthor?: string | null, opengraphTitle?: string | null, opengraphUrl?: string | null, title?: string | null, breadcrumbs?: Array<{ __typename?: 'SEOPostTypeBreadcrumbs', text?: string | null, url?: string | null } | null> | null, opengraphImage?: { __typename?: 'MediaItem', link?: string | null } | null, schema?: { __typename?: 'SEOPostTypeSchema', raw?: string | null } | null } | null } | null };
-
 export type GetPageSlugsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type GetPageSlugsQuery = { __typename?: 'RootQuery', pages?: { __typename?: 'RootQueryToPageConnection', nodes: Array<{ __typename?: 'Page', slug?: string | null, seo?: { __typename?: 'PostTypeSEO', metaRobotsNoindex?: string | null } | null }> } | null };
-
-export type GetPageByIdQueryVariables = Exact<{
-  pageId: Scalars['ID']['input'];
-  idType?: InputMaybe<PageIdType>;
-}>;
-
-
-export type GetPageByIdQuery = { __typename?: 'RootQuery', page?: { __typename?: 'Page', authorId?: string | null, id: string, title?: string | null, slug?: string | null, status?: string | null, content?: string | null, blocks?: any | null, template?: { __typename?: 'DefaultTemplate', templateName?: string | null } | { __typename?: 'Template_Blank', templateName?: string | null } | { __typename?: 'Template_BlogAlternative', templateName?: string | null } | null, seo?: { __typename?: 'PostTypeSEO', metaRobotsNoindex?: string | null, metaRobotsNofollow?: string | null, metaDesc?: string | null, metaKeywords?: string | null, canonical?: string | null, opengraphDescription?: string | null, opengraphAuthor?: string | null, opengraphTitle?: string | null, opengraphUrl?: string | null, title?: string | null, breadcrumbs?: Array<{ __typename?: 'SEOPostTypeBreadcrumbs', text?: string | null, url?: string | null } | null> | null, opengraphImage?: { __typename?: 'MediaItem', link?: string | null } | null, schema?: { __typename?: 'SEOPostTypeSchema', raw?: string | null } | null } | null } | null };
 
 export const NavigationMenuItemFragmentFragmentDoc = gql`
     fragment NavigationMenuItemFragment on MenuItem {
@@ -10741,48 +10725,6 @@ export type GetBlogCategorySlugsQueryHookResult = ReturnType<typeof useGetBlogCa
 export type GetBlogCategorySlugsLazyQueryHookResult = ReturnType<typeof useGetBlogCategorySlugsLazyQuery>;
 export type GetBlogCategorySlugsSuspenseQueryHookResult = ReturnType<typeof useGetBlogCategorySlugsSuspenseQuery>;
 export type GetBlogCategorySlugsQueryResult = Apollo.QueryResult<GetBlogCategorySlugsQuery, GetBlogCategorySlugsQueryVariables>;
-export const GetPostDocument = gql`
-    query GetPost($pageSlug: ID!, $asPreview: Boolean = false, $idType: PostIdType = SLUG) {
-  post(id: $pageSlug, idType: $idType, asPreview: $asPreview) {
-    ...postFieldsFragment
-  }
-}
-    ${PostFieldsFragmentFragmentDoc}`;
-
-/**
- * __useGetPostQuery__
- *
- * To run a query within a React component, call `useGetPostQuery` and pass it any options that fit your needs.
- * When your component renders, `useGetPostQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useGetPostQuery({
- *   variables: {
- *      pageSlug: // value for 'pageSlug'
- *      asPreview: // value for 'asPreview'
- *      idType: // value for 'idType'
- *   },
- * });
- */
-export function useGetPostQuery(baseOptions: Apollo.QueryHookOptions<GetPostQuery, GetPostQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetPostQuery, GetPostQueryVariables>(GetPostDocument, options);
-      }
-export function useGetPostLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetPostQuery, GetPostQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetPostQuery, GetPostQueryVariables>(GetPostDocument, options);
-        }
-export function useGetPostSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<GetPostQuery, GetPostQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useSuspenseQuery<GetPostQuery, GetPostQueryVariables>(GetPostDocument, options);
-        }
-export type GetPostQueryHookResult = ReturnType<typeof useGetPostQuery>;
-export type GetPostLazyQueryHookResult = ReturnType<typeof useGetPostLazyQuery>;
-export type GetPostSuspenseQueryHookResult = ReturnType<typeof useGetPostSuspenseQuery>;
-export type GetPostQueryResult = Apollo.QueryResult<GetPostQuery, GetPostQueryVariables>;
 export const GetTagDocument = gql`
     query GetTag($pageSlug: ID!, $idType: TagIdType = SLUG) {
   tag(id: $pageSlug, idType: $idType) {
@@ -10892,6 +10834,60 @@ export type GetBlogTagSlugsQueryHookResult = ReturnType<typeof useGetBlogTagSlug
 export type GetBlogTagSlugsLazyQueryHookResult = ReturnType<typeof useGetBlogTagSlugsLazyQuery>;
 export type GetBlogTagSlugsSuspenseQueryHookResult = ReturnType<typeof useGetBlogTagSlugsSuspenseQuery>;
 export type GetBlogTagSlugsQueryResult = Apollo.QueryResult<GetBlogTagSlugsQuery, GetBlogTagSlugsQueryVariables>;
+export const GetContentNodeDocument = gql`
+    query GetContentNode($pageSlug: ID!, $asPreview: Boolean = false, $idType: ContentNodeIdTypeEnum = URI, $contentType: ContentTypeEnum = PAGE) {
+  contentNode(
+    id: $pageSlug
+    idType: $idType
+    asPreview: $asPreview
+    contentType: $contentType
+  ) {
+    ... on Post {
+      ...postFieldsFragment
+    }
+    ... on Page {
+      ...pageFieldsFragment
+    }
+  }
+}
+    ${PostFieldsFragmentFragmentDoc}
+${PageFieldsFragmentFragmentDoc}`;
+
+/**
+ * __useGetContentNodeQuery__
+ *
+ * To run a query within a React component, call `useGetContentNodeQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetContentNodeQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetContentNodeQuery({
+ *   variables: {
+ *      pageSlug: // value for 'pageSlug'
+ *      asPreview: // value for 'asPreview'
+ *      idType: // value for 'idType'
+ *      contentType: // value for 'contentType'
+ *   },
+ * });
+ */
+export function useGetContentNodeQuery(baseOptions: Apollo.QueryHookOptions<GetContentNodeQuery, GetContentNodeQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetContentNodeQuery, GetContentNodeQueryVariables>(GetContentNodeDocument, options);
+      }
+export function useGetContentNodeLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetContentNodeQuery, GetContentNodeQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetContentNodeQuery, GetContentNodeQueryVariables>(GetContentNodeDocument, options);
+        }
+export function useGetContentNodeSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<GetContentNodeQuery, GetContentNodeQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<GetContentNodeQuery, GetContentNodeQueryVariables>(GetContentNodeDocument, options);
+        }
+export type GetContentNodeQueryHookResult = ReturnType<typeof useGetContentNodeQuery>;
+export type GetContentNodeLazyQueryHookResult = ReturnType<typeof useGetContentNodeLazyQuery>;
+export type GetContentNodeSuspenseQueryHookResult = ReturnType<typeof useGetContentNodeSuspenseQuery>;
+export type GetContentNodeQueryResult = Apollo.QueryResult<GetContentNodeQuery, GetContentNodeQueryVariables>;
 export const GetAllSlugsDocument = gql`
     query GetAllSlugs {
   pages(first: 1000, where: {status: PUBLISH}) {
@@ -11059,48 +11055,6 @@ export type ReadingSettingsQueryHookResult = ReturnType<typeof useReadingSetting
 export type ReadingSettingsLazyQueryHookResult = ReturnType<typeof useReadingSettingsLazyQuery>;
 export type ReadingSettingsSuspenseQueryHookResult = ReturnType<typeof useReadingSettingsSuspenseQuery>;
 export type ReadingSettingsQueryResult = Apollo.QueryResult<ReadingSettingsQuery, ReadingSettingsQueryVariables>;
-export const GetPageDocument = gql`
-    query GetPage($pageSlug: ID!, $asPreview: Boolean = false, $idType: PageIdType = URI) {
-  page(id: $pageSlug, idType: $idType, asPreview: $asPreview) {
-    ...pageFieldsFragment
-  }
-}
-    ${PageFieldsFragmentFragmentDoc}`;
-
-/**
- * __useGetPageQuery__
- *
- * To run a query within a React component, call `useGetPageQuery` and pass it any options that fit your needs.
- * When your component renders, `useGetPageQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useGetPageQuery({
- *   variables: {
- *      pageSlug: // value for 'pageSlug'
- *      asPreview: // value for 'asPreview'
- *      idType: // value for 'idType'
- *   },
- * });
- */
-export function useGetPageQuery(baseOptions: Apollo.QueryHookOptions<GetPageQuery, GetPageQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetPageQuery, GetPageQueryVariables>(GetPageDocument, options);
-      }
-export function useGetPageLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetPageQuery, GetPageQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetPageQuery, GetPageQueryVariables>(GetPageDocument, options);
-        }
-export function useGetPageSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<GetPageQuery, GetPageQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useSuspenseQuery<GetPageQuery, GetPageQueryVariables>(GetPageDocument, options);
-        }
-export type GetPageQueryHookResult = ReturnType<typeof useGetPageQuery>;
-export type GetPageLazyQueryHookResult = ReturnType<typeof useGetPageLazyQuery>;
-export type GetPageSuspenseQueryHookResult = ReturnType<typeof useGetPageSuspenseQuery>;
-export type GetPageQueryResult = Apollo.QueryResult<GetPageQuery, GetPageQueryVariables>;
 export const GetPageSlugsDocument = gql`
     query GetPageSlugs {
   pages(first: 1000, where: {status: PUBLISH}) {
@@ -11145,44 +11099,3 @@ export type GetPageSlugsQueryHookResult = ReturnType<typeof useGetPageSlugsQuery
 export type GetPageSlugsLazyQueryHookResult = ReturnType<typeof useGetPageSlugsLazyQuery>;
 export type GetPageSlugsSuspenseQueryHookResult = ReturnType<typeof useGetPageSlugsSuspenseQuery>;
 export type GetPageSlugsQueryResult = Apollo.QueryResult<GetPageSlugsQuery, GetPageSlugsQueryVariables>;
-export const GetPageByIdDocument = gql`
-    query GetPageById($pageId: ID!, $idType: PageIdType = DATABASE_ID) {
-  page(id: $pageId, idType: $idType) {
-    ...pageFieldsFragment
-  }
-}
-    ${PageFieldsFragmentFragmentDoc}`;
-
-/**
- * __useGetPageByIdQuery__
- *
- * To run a query within a React component, call `useGetPageByIdQuery` and pass it any options that fit your needs.
- * When your component renders, `useGetPageByIdQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useGetPageByIdQuery({
- *   variables: {
- *      pageId: // value for 'pageId'
- *      idType: // value for 'idType'
- *   },
- * });
- */
-export function useGetPageByIdQuery(baseOptions: Apollo.QueryHookOptions<GetPageByIdQuery, GetPageByIdQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetPageByIdQuery, GetPageByIdQueryVariables>(GetPageByIdDocument, options);
-      }
-export function useGetPageByIdLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetPageByIdQuery, GetPageByIdQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetPageByIdQuery, GetPageByIdQueryVariables>(GetPageByIdDocument, options);
-        }
-export function useGetPageByIdSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<GetPageByIdQuery, GetPageByIdQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useSuspenseQuery<GetPageByIdQuery, GetPageByIdQueryVariables>(GetPageByIdDocument, options);
-        }
-export type GetPageByIdQueryHookResult = ReturnType<typeof useGetPageByIdQuery>;
-export type GetPageByIdLazyQueryHookResult = ReturnType<typeof useGetPageByIdLazyQuery>;
-export type GetPageByIdSuspenseQueryHookResult = ReturnType<typeof useGetPageByIdSuspenseQuery>;
-export type GetPageByIdQueryResult = Apollo.QueryResult<GetPageByIdQuery, GetPageByIdQueryVariables>;

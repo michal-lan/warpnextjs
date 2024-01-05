@@ -17,7 +17,7 @@ const Pagination = ({
 
     return (
         <div className='flex items-center justify-center my-8'>
-            {pages.map((pageNumber, i) =>
+            {pages?.map((pageNumber, i) =>
                 pageNumber === DOTTS ? (
                     <span
                         key={i}

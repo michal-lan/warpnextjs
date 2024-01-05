@@ -16,6 +16,8 @@ import { onError } from '@apollo/client/link/error'
 import { TokenRefreshLink } from 'apollo-link-token-refresh'
 import { v4 as uuid } from 'uuid'
 import fetch from 'isomorphic-fetch'
+import dotenv from 'dotenv'
+dotenv.config()
 
 const httpLink = new HttpLink({
     uri: process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL_URL,
@@ -40,6 +42,7 @@ const authMiddleware = new ApolloLink((operation, forward) => {
     operation.setContext({
         headers: {
             Authorization: token ? `Bearer ${token}` : '',
+            'X-WARPNEXTJS-SECRET': process.env.WARPNEXTJS_SECRET_KEY,
         },
     })
 

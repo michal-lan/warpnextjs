@@ -2,19 +2,16 @@ import makeApolloRequest from 'apollo-client'
 import { cache } from 'react'
 import { Metadata } from 'next'
 import {
-    GetPostQuery,
-    GetPostDocument,
     GetBlogPostsQuery,
     GetBlogPostsDocument,
+    GetContentNodeQuery,
+    GetContentNodeDocument,
 } from '@/__generated__/graphql'
-import Wrapper from '@/components/Wrapper'
-import Container from '@/components/Container'
-import SeoSchema from '@/components/SeoSchema'
 import { notFound } from 'next/navigation'
 import { PageProps } from '@/types/page'
 import { prepareSEO } from '@/utils/prepareSEO'
 import { getArchiveSlugs } from '@/utils/getArchiveSlugs'
-import Content from '@/components/Content'
+import Template from '@/components/Template'
 
 // Return a list of `params` to populate the [slug] dynamic segment
 export async function generateStaticParams() {
@@ -29,9 +26,13 @@ export async function generateStaticParams() {
 }
 
 const pageRequest = cache(async ({ params, searchParams }: PageProps) => {
-    return await makeApolloRequest<GetPostQuery>(GetPostDocument, {
-        pageSlug: params.slug,
-    })
+    return await makeApolloRequest<GetContentNodeQuery>(
+        GetContentNodeDocument,
+        {
+            pageSlug: params.slug,
+            contentType: 'POST',
+        },
+    )
 })
 
 export async function generateMetadata({
@@ -39,40 +40,17 @@ export async function generateMetadata({
     searchParams,
 }: PageProps): Promise<Metadata> {
     const { data } = await pageRequest({ params, searchParams })
-    return prepareSEO(data?.post?.seo)
+    return prepareSEO(data?.contentNode?.seo)
 }
 
 // Multiple versions of this page will be statically generated
 // using the `params` returned by `generateStaticParams`
 export default async function Page({ params, searchParams }: PageProps) {
     const { data } = await pageRequest({ params, searchParams })
-    const post = data?.post
 
-    if (!post) {
+    if (!data?.contentNode) {
         notFound()
     }
 
-    return (
-        <>
-            <Wrapper>
-                <Container>
-                    <article
-                        key={post?.id}
-                        className='flex max-w-xl flex-col items-start justify-between'
-                    >
-                        <div className='mx-auto max-w-2xl lg:mx-0 my-12'>
-                            <h2 className='text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl'>
-                                {post?.title}
-                            </h2>
-
-                            <div className='mt-2 text-lg leading-8 text-gray-600'>
-                                <Content value={post?.content} />
-                            </div>
-                        </div>
-                    </article>
-                </Container>
-            </Wrapper>
-            <SeoSchema seo={data?.post?.seo} />
-        </>
-    )
+    return <Template data={data} type='post' />
 }

@@ -25,7 +25,7 @@ const PageBuilder = ({ sections }: { sections: [] | undefined }) => {
     })
     return (
         <>
-            {pageBuilderSections.map(block => {
+            {pageBuilderSections?.map(block => {
                 // component does exist
                 if (
                     typeof AcfPageBuilderComponents[block.sectionId] !==

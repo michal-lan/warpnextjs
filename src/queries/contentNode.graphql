@@ -1,0 +1,20 @@
+query GetContentNode(
+    $pageSlug: ID!
+    $asPreview: Boolean = false
+    $idType: ContentNodeIdTypeEnum = URI
+    $contentType: ContentTypeEnum = PAGE
+) {
+    contentNode(
+        id: $pageSlug
+        idType: $idType
+        asPreview: $asPreview
+        contentType: $contentType
+    ) {
+        ... on Post {
+            ...postFieldsFragment
+        }
+        ... on Page {
+            ...pageFieldsFragment
+        }
+    }
+}

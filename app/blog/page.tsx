@@ -2,29 +2,30 @@ import makeApolloRequest from 'apollo-client'
 import { cache } from 'react'
 import { Metadata } from 'next'
 import {
-    GetPageByIdQuery,
-    GetPageByIdDocument,
     GetBlogPostsQuery,
     GetBlogPostsDocument,
+    GetContentNodeQuery,
+    GetContentNodeDocument,
 } from '@/__generated__/graphql'
-import Wrapper from '@/components/Wrapper'
-import Container from '@/components/Container'
-import SeoSchema from '@/components/SeoSchema'
 import { notFound } from 'next/navigation'
 import { PageProps } from '@/types/page'
 import { prepareSEO } from '@/utils/prepareSEO'
-import ArchivePaginatedPage from '@/components/Blog/ArchivePaginatedPage'
 import { PER_PAGE } from '@/constants/app'
 import getReadingSettings from '@/utils/getReadingSettings'
 import { OffsetPaginationProps } from '@/types/pagination.type'
 import { getPageOffset } from '@/utils/paginationHelpers'
+import Template from '@/components/Template'
 
 const pageRequest = cache(async ({ params, searchParams }: PageProps) => {
     const { pageForPosts } = await getReadingSettings()
 
-    return await makeApolloRequest<GetPageByIdQuery>(GetPageByIdDocument, {
-        pageId: pageForPosts,
-    })
+    return await makeApolloRequest<GetContentNodeQuery>(
+        GetContentNodeDocument,
+        {
+            pageSlug: pageForPosts,
+            idType: 'DATABASE_ID',
+        },
+    )
 })
 
 const postsRequest = cache(
@@ -44,7 +45,7 @@ export async function generateMetadata({
     searchParams,
 }: PageProps): Promise<Metadata> {
     const { data } = await pageRequest({ params, searchParams })
-    return prepareSEO(data?.page?.seo)
+    return prepareSEO(data?.contentNode?.seo)
 }
 
 export default async function Page({ params, searchParams }: PageProps) {
@@ -57,22 +58,15 @@ export default async function Page({ params, searchParams }: PageProps) {
     const totalPosts = postsData?.posts?.pageInfo?.offsetPagination?.total ?? 0
     const posts = postsData?.posts?.nodes ?? []
 
-    if (!data?.page) {
+    if (!data?.contentNode) {
         notFound()
     }
 
-    return (
-        <>
-            <Wrapper>
-                <Container>
-                    <ArchivePaginatedPage
-                        items={posts}
-                        currentPage={currentPage}
-                        totalItems={totalPosts}
-                    />
-                </Container>
-            </Wrapper>
-            <SeoSchema seo={data?.page?.seo} />
-        </>
-    )
+    const additionalData = {
+        posts,
+        currentPage,
+        totalPosts,
+    }
+
+    return <Template {...additionalData} data={data} type='blogArchive' />
 }
