@@ -16,6 +16,9 @@ import { OffsetPaginationProps } from '@/types/pagination.type'
 import { getPageOffset } from '@/utils/paginationHelpers'
 import Template from '@/components/Template'
 
+// this should be the name of archive in queried URI
+export const archiveName = 'blog'
+
 const pageRequest = cache(async ({ params, searchParams }: PageProps) => {
     const { pageForPosts } = await getReadingSettings()
 
