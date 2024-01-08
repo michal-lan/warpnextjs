@@ -12,6 +12,7 @@ import { PageProps } from '@/types/page'
 import { prepareSEO } from '@/utils/prepareSEO'
 import { getArchiveSlugs } from '@/utils/getArchiveSlugs'
 import Template from '@/components/Template'
+import { archiveName } from '../page'
 
 // Return a list of `params` to populate the [slug] dynamic segment
 export async function generateStaticParams() {
@@ -29,7 +30,7 @@ const pageRequest = cache(async ({ params, searchParams }: PageProps) => {
     return await makeApolloRequest<GetContentNodeQuery>(
         GetContentNodeDocument,
         {
-            pageSlug: params.slug,
+            pageSlug: `${archiveName}/${params.slug}`,
             contentType: 'POST',
         },
     )
